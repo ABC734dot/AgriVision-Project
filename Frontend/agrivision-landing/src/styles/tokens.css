@@ -1,0 +1,63 @@
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --soil: #2b2118;
+  --soil-deep: #1a1410;
+  --wheat: #f2e8d5;
+  --offwhite: #faf6ef;
+  --crop: #4f7942;
+  --crop-light: #6e9c5c;
+  --amber: #e8a33d;
+  --amber-deep: #c9852a;
+  --line: rgba(242, 232, 213, 0.14);
+  --line-soft: rgba(26, 20, 16, 0.1);
+
+  --font-display: "Fraunces", serif;
+  --font-body: "Work Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--soil-deep);
+  color: var(--wheat);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--amber);
+  color: var(--soil-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: 4px;
+}

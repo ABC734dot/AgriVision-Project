@@ -1,0 +1,97 @@
+.story-card {
+  position: relative;
+  flex: 0 0 300px;
+  height: 380px;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #3a2f24;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+}
+
+.story-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+.story-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.story-card:hover img {
+  transform: scale(1.08);
+}
+
+.story-card .card-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 16, 12, 0) 40%, rgba(20, 16, 12, 0.92) 100%);
+}
+
+.story-card .card-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  z-index: 2;
+}
+
+.story-card .card-region {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.story-card .card-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.story-card .card-sub {
+  font-size: 0.85rem;
+  color: rgba(242, 232, 213, 0.7);
+}
+
+.story-card .play-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(20, 16, 12, 0.55);
+  border: 1px solid rgba(242, 232, 213, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.story-card:hover .play-badge {
+  opacity: 1;
+}
+
+.play-badge svg {
+  width: 14px;
+  height: 14px;
+}
+
+@media (max-width: 860px) {
+  .story-card {
+    flex: 0 0 240px;
+    height: 320px;
+  }
+}

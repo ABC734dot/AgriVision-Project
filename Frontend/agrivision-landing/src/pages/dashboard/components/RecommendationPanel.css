@@ -1,0 +1,30 @@
+.result-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 70px 30px;
+  color: rgba(26, 20, 16, 0.4);
+}
+
+.result-empty svg {
+  width: 46px;
+  height: 46px;
+  margin-bottom: 16px;
+  color: rgba(26, 20, 16, 0.2);
+}
+
+.result-empty p {
+  font-size: 0.92rem;
+  max-width: 280px;
+  line-height: 1.6;
+}
+
+.rank-list {
+  display: none;
+}
+
+.rank-list.show {
+  display: block;
+}

@@ -1,0 +1,136 @@
+.turn-section {
+  position: relative;
+  background: var(--soil-deep);
+  padding: 100px 48px 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.turn-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 70px;
+  background: linear-gradient(to bottom, transparent, var(--line));
+}
+
+.turn-rows {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.06;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--wheat) 0px,
+    var(--wheat) 1px,
+    transparent 1px,
+    transparent 64px
+  );
+}
+
+.turn-content {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+}
+
+.turn-content .section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--crop-light);
+  display: block;
+  margin-bottom: 18px;
+}
+
+.turn-content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  font-weight: 600;
+  line-height: 1.12;
+  margin-bottom: 18px;
+}
+
+.turn-content h2 em {
+  font-style: italic;
+  color: var(--amber);
+  font-weight: 500;
+}
+
+.turn-content p {
+  color: rgba(242, 232, 213, 0.75);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 38px;
+}
+
+.turn-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--crop);
+  color: var(--offwhite);
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 19px 38px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 30px rgba(79, 121, 66, 0.35);
+}
+
+.turn-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, var(--crop-light), var(--crop));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.turn-btn:hover::before {
+  opacity: 1;
+}
+
+.turn-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 38px rgba(79, 121, 66, 0.45);
+}
+
+.turn-btn svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.25s ease;
+}
+
+.turn-btn:hover svg {
+  transform: translateX(4px);
+}
+
+.turn-footnote {
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: rgba(242, 232, 213, 0.45);
+}
+
+.turn-footnote a {
+  color: var(--amber);
+  border-bottom: 1px solid rgba(232, 163, 61, 0.4);
+}
+
+@media (max-width: 860px) {
+  .turn-section {
+    padding: 70px 22px 90px;
+  }
+}

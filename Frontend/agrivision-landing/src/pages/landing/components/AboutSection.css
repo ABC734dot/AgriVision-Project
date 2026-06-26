@@ -1,0 +1,130 @@
+.about-section {
+  position: relative;
+  background: var(--soil-deep);
+  padding: 110px 48px 100px;
+  border-top: 1px solid var(--line);
+}
+
+.about-intro {
+  max-width: 720px;
+  margin: 0 auto 64px;
+  text-align: center;
+}
+
+.about-intro .section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amber);
+  display: block;
+  margin-bottom: 16px;
+}
+
+.about-intro h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+  font-weight: 600;
+  line-height: 1.18;
+  margin-bottom: 22px;
+}
+
+.about-intro h2 em {
+  font-style: italic;
+  color: var(--amber);
+  font-weight: 500;
+}
+
+.about-mission {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: rgba(242, 232, 213, 0.72);
+}
+
+/* ===== STATS STRIP ===== */
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 920px;
+  margin: 0 auto 80px;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 28px 20px;
+  border-radius: 14px;
+  background: rgba(242, 232, 213, 0.04);
+  border: 1px solid var(--line);
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  font-weight: 600;
+  color: var(--crop-light);
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: rgba(242, 232, 213, 0.55);
+  line-height: 1.5;
+}
+
+/* ===== HOW WE WORK STEPS ===== */
+.about-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.step-card {
+  padding: 28px 24px;
+  border-radius: 14px;
+  background: rgba(242, 232, 213, 0.03);
+  border: 1px solid var(--line);
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.step-card:hover {
+  border-color: rgba(110, 156, 92, 0.4);
+  background: rgba(79, 121, 66, 0.07);
+}
+
+.step-num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--amber);
+  margin-bottom: 14px;
+}
+
+.step-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.step-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(242, 232, 213, 0.62);
+}
+
+@media (max-width: 860px) {
+  .about-section {
+    padding: 80px 22px 70px;
+  }
+  .about-stats {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .about-steps {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,143 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 16, 12, 0.78);
+  backdrop-filter: blur(6px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 24px;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.login-card {
+  background: var(--wheat);
+  color: var(--soil-deep);
+  width: 100%;
+  max-width: 420px;
+  border-radius: 18px;
+  padding: 42px 38px;
+  position: relative;
+  transform: translateY(18px) scale(0.97);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+.modal-overlay.active .login-card {
+  transform: translateY(0) scale(1);
+}
+
+.login-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(26, 20, 16, 0.08);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.login-close:hover {
+  background: rgba(26, 20, 16, 0.15);
+}
+
+.login-close svg {
+  width: 14px;
+  height: 14px;
+}
+
+.login-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--crop);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.login-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.login-card p.sub {
+  font-size: 0.92rem;
+  color: rgba(26, 20, 16, 0.6);
+  margin-bottom: 28px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 7px;
+  color: rgba(26, 20, 16, 0.75);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: 8px;
+  border: 1.5px solid var(--line-soft);
+  background: var(--offwhite);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--soil-deep);
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--crop);
+}
+
+.login-submit {
+  width: 100%;
+  background: var(--soil-deep);
+  color: var(--wheat);
+  font-weight: 600;
+  font-size: 0.98rem;
+  padding: 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background 0.2s;
+}
+
+.login-submit:hover {
+  background: #000;
+}
+
+.login-switch {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.88rem;
+  color: rgba(26, 20, 16, 0.6);
+}
+
+.login-switch a {
+  color: var(--crop);
+  font-weight: 600;
+}

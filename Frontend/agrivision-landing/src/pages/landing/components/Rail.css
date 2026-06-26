@@ -1,0 +1,78 @@
+.row-block {
+  margin-bottom: 54px;
+}
+
+.row-block-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0 48px;
+  margin-bottom: 18px;
+}
+
+.row-block-head h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.row-block-head h3 .field-num {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--crop-light);
+  margin-right: 10px;
+  font-weight: 400;
+}
+
+.row-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.row-nav button {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--wheat);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.row-nav button:hover {
+  background: rgba(242, 232, 213, 0.08);
+  border-color: rgba(242, 232, 213, 0.35);
+}
+
+.row-nav button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.rail {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding: 4px 48px 18px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .row-block-head {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+  .rail {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+}

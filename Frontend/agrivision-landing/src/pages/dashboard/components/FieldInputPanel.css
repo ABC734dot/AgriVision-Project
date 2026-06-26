@@ -1,0 +1,200 @@
+.panel {
+  background: #fff;
+  border: 1px solid var(--line-soft);
+  border-radius: 16px;
+  padding: 26px;
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.panel-head h2 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.panel-head .step-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: rgba(26, 20, 16, 0.4);
+  letter-spacing: 0.06em;
+}
+
+.field-row {
+  margin-bottom: 18px;
+}
+
+.field-row label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(26, 20, 16, 0.7);
+  margin-bottom: 8px;
+}
+
+.field-row label .unit {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  color: rgba(26, 20, 16, 0.4);
+  font-size: 0.74rem;
+}
+
+.field-row input[type='range'] {
+  width: 100%;
+  accent-color: var(--crop);
+  height: 4px;
+}
+
+.range-readout {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: rgba(26, 20, 16, 0.45);
+  margin-top: 4px;
+}
+
+.range-readout .live {
+  color: var(--crop);
+  font-weight: 600;
+}
+
+select,
+.text-input {
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: 8px;
+  border: 1.5px solid var(--line-soft);
+  background: var(--offwhite);
+  font-size: 0.92rem;
+  color: var(--soil-deep);
+  font-family: inherit;
+}
+
+select:focus,
+.text-input:focus {
+  outline: none;
+  border-color: var(--crop);
+}
+
+.run-btn {
+  width: 100%;
+  background: var(--crop);
+  color: var(--offwhite);
+  font-weight: 600;
+  font-size: 0.98rem;
+  padding: 15px;
+  border-radius: 9px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.run-btn:hover {
+  background: #436a39;
+  transform: translateY(-1px);
+}
+
+.run-btn:disabled {
+  cursor: default;
+}
+
+.run-btn svg {
+  width: 17px;
+  height: 17px;
+}
+
+.run-btn.loading svg {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.auto-note {
+  display: flex;
+  gap: 9px;
+  background: rgba(79, 121, 66, 0.07);
+  border: 1px solid rgba(79, 121, 66, 0.18);
+  border-radius: 9px;
+  padding: 11px 13px;
+  font-size: 0.78rem;
+  color: rgba(26, 20, 16, 0.65);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.auto-note svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--crop);
+}
+
+.location-input-wrap {
+  position: relative;
+  display: flex;
+}
+
+.location-input {
+  padding-right: 46px;
+}
+
+.location-pin-btn {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  border: none;
+  background: rgba(79, 121, 66, 0.1);
+  color: var(--crop);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.location-pin-btn:hover:not(:disabled) {
+  background: var(--crop);
+  color: var(--offwhite);
+}
+
+.location-pin-btn:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.location-pin-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.location-pin-btn.locating svg {
+  animation: spin 0.9s linear infinite;
+}
+
+.location-error {
+  margin-top: 8px;
+  font-size: 0.76rem;
+  color: #b5552e;
+  line-height: 1.4;
+}

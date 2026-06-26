@@ -1,0 +1,60 @@
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 34px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.topbar .greeting {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--crop);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.topbar h1 {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 600;
+}
+
+.topbar .sub {
+  color: rgba(26, 20, 16, 0.55);
+  font-size: 0.95rem;
+  margin-top: 6px;
+}
+
+.season-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--soil-deep);
+  color: var(--wheat);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 10px 16px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.season-badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+  animation: badgePulse 2s infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}

@@ -1,0 +1,35 @@
+.field-rows {
+  position: relative;
+  background: var(--soil-deep);
+  padding: 90px 0 60px;
+}
+
+.field-rows-intro {
+  padding: 0 48px;
+  max-width: 640px;
+  margin-bottom: 44px;
+}
+
+.field-rows-intro .section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 14px;
+  display: block;
+}
+
+.field-rows-intro h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+@media (max-width: 860px) {
+  .field-rows-intro {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+}

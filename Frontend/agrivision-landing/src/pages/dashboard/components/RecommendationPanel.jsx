@@ -1,0 +1,30 @@
+import RankItem from './RankItem.jsx'
+import './RecommendationPanel.css'
+
+export default function RecommendationPanel({ results, hasRun }) {
+  return (
+    <div className="panel">
+      <div className="panel-head">
+        <h2>Ranked recommendation</h2>
+        <span className="step-tag">STEP 2 / 2</span>
+      </div>
+
+      {!hasRun && (
+        <div className="result-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+            <path d="M12 2v6M12 16v6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M16 12h6M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2" />
+          </svg>
+          <p>Set your field values and run the model to see your ranked crop list here.</p>
+        </div>
+      )}
+
+      {hasRun && (
+        <div className="rank-list show">
+          {results.map((crop, i) => (
+            <RankItem crop={crop} index={i} animate={hasRun} key={crop.name} />
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
