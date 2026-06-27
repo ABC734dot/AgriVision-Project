@@ -28,3 +28,31 @@
 .rank-list.show {
   display: block;
 }
+
+.log-season-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  background: transparent;
+  border: 1.5px dashed var(--line-soft);
+  color: var(--crop);
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 13px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.log-season-trigger:hover {
+  background: rgba(79, 121, 66, 0.07);
+  border-color: var(--crop);
+}
+
+.log-season-trigger svg {
+  width: 16px;
+  height: 16px;
+}

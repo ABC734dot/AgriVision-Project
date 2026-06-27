@@ -1,0 +1,182 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 16, 12, 0.78);
+  backdrop-filter: blur(6px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 24px;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.log-season-card {
+  background: var(--offwhite);
+  color: var(--soil-deep);
+  width: 100%;
+  max-width: 480px;
+  border-radius: 18px;
+  padding: 38px 36px;
+  position: relative;
+  transform: translateY(18px) scale(0.97);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-overlay.active .log-season-card {
+  transform: translateY(0) scale(1);
+}
+
+.log-season-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(26, 20, 16, 0.08);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.log-season-close:hover {
+  background: rgba(26, 20, 16, 0.15);
+}
+
+.log-season-close svg {
+  width: 14px;
+  height: 14px;
+}
+
+.log-season-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--crop);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.log-season-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.log-season-card p.sub {
+  font-size: 0.88rem;
+  color: rgba(26, 20, 16, 0.6);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.form-row-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: rgba(26, 20, 16, 0.75);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: 8px;
+  border: 1.5px solid var(--line-soft);
+  background: #fff;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--soil-deep);
+  transition: border-color 0.2s;
+}
+
+.form-group textarea {
+  resize: vertical;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--crop);
+}
+
+.recommended-note {
+  background: rgba(79, 121, 66, 0.08);
+  border: 1px solid rgba(79, 121, 66, 0.2);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.82rem;
+  color: rgba(26, 20, 16, 0.7);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.log-season-error {
+  background: rgba(181, 85, 46, 0.1);
+  border: 1px solid rgba(181, 85, 46, 0.3);
+  color: #8f3f20;
+  font-size: 0.82rem;
+  padding: 10px 12px;
+  border-radius: 7px;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.log-season-submit {
+  width: 100%;
+  background: var(--crop);
+  color: var(--offwhite);
+  font-weight: 600;
+  font-size: 0.96rem;
+  padding: 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: background 0.2s;
+}
+
+.log-season-submit:hover {
+  background: #436a39;
+}
+
+.log-season-submit:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+
+@media (max-width: 480px) {
+  .form-row-split {
+    grid-template-columns: 1fr;
+  }
+}

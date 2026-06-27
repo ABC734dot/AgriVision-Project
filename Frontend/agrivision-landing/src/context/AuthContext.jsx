@@ -44,6 +44,9 @@ export function AuthProvider({ children }) {
     setUser(null)
   }
 
+  // Lets pages update the cached user after a recommendation run or
+  // history entry, without re-fetching the whole profile from the server.
+
   const updateActiveField = (fieldId, patch) => {
     setUser((prev) => {
       if (!prev) return prev
@@ -51,8 +54,25 @@ export function AuthProvider({ children }) {
     })
   }
 
+    // Prepends a newly-created history entry to a field's history array
+    // (matches the backend's ORDER BY id DESC — newest first), so
+    // FieldHistoryPage reflects it immediately after submission.
+    const addHistoryEntryLocal = (fieldId, entry) => {
+      setUser((prev) => {
+       if (!prev) return prev
+       return {
+        ...prev,
+        fields: prev.fields.map((f) =>
+        f.id === fieldId ? { ...f, history: [entry, ...(f.history || [])] } : f
+        ),
+      }
+    })
+  }
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, signup, logout, updateActiveField }}>
+    <AuthContext.Provider
+      value={{ user, loading, login, signup, logout, updateActiveField, addHistoryEntryLocal }}
+    >
       {children}
     </AuthContext.Provider>
   )

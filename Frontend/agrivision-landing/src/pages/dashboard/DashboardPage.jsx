@@ -4,14 +4,19 @@ import Topbar from './components/Topbar.jsx'
 import FieldInputPanel from './components/FieldInputPanel.jsx'
 import RecommendationPanel from './components/RecommendationPanel.jsx'
 import InsightStrip from './components/InsightStrip.jsx'
+import LogSeasonModal from './components/LogSeasonModal.jsx'
 import { useAuth } from '../../context/AuthContext.jsx'
 import { api } from '../../api/client.js'
 import './DashboardPage.css'
 
 export default function DashboardPage() {
-  const { user, updateActiveField } = useAuth()
+  const { user, updateActiveField, addHistoryEntryLocal } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+
+  const [logSeasonOpen, setLogSeasonOpen] = useState(false)
+  const [logSeasonSubmitting, setLogSeasonSubmitting] = useState(false)
+  const [logSeasonError, setLogSeasonError] = useState('')
 
   const activeField = user?.fields?.find((f) => f.is_active) || user?.fields?.[0] || null
 
@@ -39,7 +44,7 @@ export default function DashboardPage() {
         rainfallLabel: values.rainfall,
       })
 
-            setRecommendation(result)
+      setRecommendation(result)
       updateActiveField(activeField.id, {
         latestRun: { result_json: result, model_confidence: result.modelConfidence },
         location_label: values.location || activeField.location_label,
@@ -48,12 +53,39 @@ export default function DashboardPage() {
         last_nitrogen: values.nitrogen,
         last_rainfall_label: values.rainfall,
       })
-
-      
     } catch (err) {
       setError(err.message || 'Could not generate a recommendation right now.')
     } finally {
       setIsLoading(false)
+    }
+  }
+
+  const handleLogSeasonSubmit = async (formValues) => {
+    if (!activeField) return
+    setLogSeasonError('')
+    setLogSeasonSubmitting(true)
+
+    try {
+      const { id } = await api.addHistoryEntry(activeField.id, formValues)
+
+      addHistoryEntryLocal(activeField.id, {
+        id,
+        season: formValues.seasonLabel,
+        dateRange: formValues.dateRange,
+        recommended: formValues.recommendedCrop,
+        recommendedIcon: formValues.recommendedIcon,
+        matchScore: formValues.matchScore,
+        planted: formValues.plantedCrop,
+        outcome: formValues.outcome,
+        yieldNote: formValues.yieldNote,
+        note: formValues.note,
+      })
+
+      setLogSeasonOpen(false)
+    } catch (err) {
+      setLogSeasonError(err.message || 'Could not save this season right now.')
+    } finally {
+      setLogSeasonSubmitting(false)
     }
   }
 
@@ -83,7 +115,11 @@ export default function DashboardPage() {
             hasRun={hasRun}
             initialValues={initialValues}
           />
-          <RecommendationPanel results={recommendation?.crops || []} hasRun={hasRun} />
+          <RecommendationPanel
+            results={recommendation?.crops || []}
+            hasRun={hasRun}
+            onLogSeasonClick={() => setLogSeasonOpen(true)}
+          />
         </div>
 
         <InsightStrip
@@ -93,6 +129,15 @@ export default function DashboardPage() {
           yieldUplift={recommendation?.estimatedYieldUpliftPercent}
         />
       </main>
+
+      <LogSeasonModal
+        isOpen={logSeasonOpen}
+        onClose={() => setLogSeasonOpen(false)}
+        onSubmit={handleLogSeasonSubmit}
+        topCrop={recommendation?.crops?.[0]}
+        submitting={logSeasonSubmitting}
+        error={logSeasonError}
+      />
     </div>
   )
 }
