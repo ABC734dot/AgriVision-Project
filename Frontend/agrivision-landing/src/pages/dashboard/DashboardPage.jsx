@@ -39,10 +39,17 @@ export default function DashboardPage() {
         rainfallLabel: values.rainfall,
       })
 
-      setRecommendation(result)
+            setRecommendation(result)
       updateActiveField(activeField.id, {
         latestRun: { result_json: result, model_confidence: result.modelConfidence },
+        location_label: values.location || activeField.location_label,
+        last_moisture: values.moisture,
+        last_ph: Number((values.ph / 10).toFixed(1)),
+        last_nitrogen: values.nitrogen,
+        last_rainfall_label: values.rainfall,
       })
+
+      
     } catch (err) {
       setError(err.message || 'Could not generate a recommendation right now.')
     } finally {
