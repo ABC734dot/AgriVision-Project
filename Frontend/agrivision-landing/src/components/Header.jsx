@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import BrandMark from './BrandMark.jsx'
+import LanguagePicker from './LanguagePicker.jsx'
 import './Header.css'
 
 export default function Header({ onProfileClick }) {
   const [scrolled, setScrolled] = useState(false)
+  const { t } = useTranslation()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30)
@@ -20,11 +23,12 @@ export default function Header({ onProfileClick }) {
 
       <div className="nav-right">
         <ul className="nav-links">
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#stories">Farmer Stories</a></li>
-          {/* <li><a href="#">How it Works</a></li> */}
-          <li><a href="#about">About</a></li>
+          <li><a href="#hero">{t('header.home')}</a></li>
+          <li><a href="#stories">{t('header.farmerStories')}</a></li>
+          <li><a href="#about">{t('header.about')}</a></li>
         </ul>
+
+        <LanguagePicker />
 
         <button className="profile-btn" aria-label="Account" onClick={onProfileClick}>
           <svg viewBox="0 0 24 24" fill="none" stroke="#F2E8D5" strokeWidth="2" strokeLinecap="round">

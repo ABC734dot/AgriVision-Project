@@ -1,5 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import BrandMark from '../../../components/BrandMark.jsx'
+import LanguagePicker from '../../../components/LanguagePicker.jsx'
 import { useAuth } from '../../../context/AuthContext.jsx'
 import './Sidebar.css'
 
@@ -7,6 +9,7 @@ export default function Sidebar() {
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const { user, logout } = useAuth()
+  const { t } = useTranslation()
 
   const activeField = user?.fields?.find((f) => f.is_active) || user?.fields?.[0] || null
 
@@ -22,7 +25,7 @@ export default function Sidebar() {
         AgriVision
       </Link>
 
-      <span className="nav-section-label">Overview</span>
+      <span className="nav-section-label">{t('sidebar.overview')}</span>
       <ul className="nav-list">
         <li>
           <Link to="/dashboard" className={pathname === '/dashboard' ? 'active' : ''}>
@@ -32,7 +35,7 @@ export default function Sidebar() {
               <rect x="3" y="14" width="7" height="7" rx="1.5" />
               <rect x="14" y="14" width="7" height="7" rx="1.5" />
             </svg>
-            Recommendation
+            {t('sidebar.recommendation')}
           </Link>
         </li>
         <li>
@@ -40,13 +43,17 @@ export default function Sidebar() {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M3 12l2-2 4 4 8-8 4 4" />
             </svg>
-            Field history
+            {t('sidebar.fieldHistory')}
           </Link>
         </li>
       </ul>
 
+      <div className="sidebar-lang-row">
+        <LanguagePicker />
+      </div>
+
       <div className="field-switcher">
-        <div className="field-switcher-label">Active field</div>
+        <div className="field-switcher-label">{t('sidebar.activeField')}</div>
         <div className="field-pill">
           <span className="dot" />
           <div className="meta">
@@ -66,7 +73,7 @@ export default function Sidebar() {
           </div>
           <div>
             <div className="pname">{user?.name || 'Guest'}</div>
-            <div className="prole">{user?.farmOwnerTitle || 'Farm owner'}</div>
+            <div className="prole">{user?.farmOwnerTitle || t('sidebar.farmOwner')}</div>
           </div>
           <button className="logout-btn" onClick={handleLogout} aria-label="Log out" title="Log out">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

@@ -1,0 +1,163 @@
+{
+  "header": {
+    "home": "Home",
+    "farmerStories": "Farmer Stories",
+    "about": "About"
+  },
+  "hero": {
+    "eyebrow": "Live field intelligence",
+    "headlinePrefix": "Know what to plant",
+    "headlineEm": "before",
+    "headlineSuffix": "the season tells you.",
+    "lede": "AgriVision reads your soil, climate, and season in real time — then recommends the crop most likely to thrive on your land, backed by data from thousands of farms like yours.",
+    "ctaPrimary": "Now it's your turn",
+    "ctaSecondary": "Watch farmer stories",
+    "scrollCue": "Scroll to explore"
+  },
+  "scanReadout": {
+    "title": "Soil scan · Field 04",
+    "moisture": "Moisture",
+    "nitrogen": "Nitrogen (N)",
+    "ph": "pH level",
+    "bestMatch": "Best match"
+  },
+  "fieldRows": {
+    "sectionLabel": "From the field",
+    "heading": "Real farms. Real seasons. Real recommendations that worked.",
+    "row1Title": "Featured Harvests",
+    "row2Title": "By Region",
+    "rowLabel": "Row"
+  },
+  "turnSection": {
+    "sectionLabel": "Your field is waiting",
+    "headingPrefix": "Stop guessing.",
+    "headingEm": "Start growing",
+    "headingSuffix": "with data on your side.",
+    "body": "Enter your land's details once — soil type, location, and season — and get a ranked list of crops built for your exact field, not a national average.",
+    "cta": "Now it's your turn",
+    "footnote": "Already scanning your fields?",
+    "footnoteLink": "Log in here"
+  },
+  "about": {
+    "sectionLabel": "About AgriVision",
+    "headingPrefix": "Built because farming decisions deserve",
+    "headingEm": "better than a guess.",
+    "mission": "Most crop choices are still made on instinct, habit, or whatever worked last year — even as rainfall patterns and soil health keep shifting under them. AgriVision exists to put real field data behind that decision, without asking a farmer to become a data scientist to use it. We started with a few fields in Punjab and built outward, region by region, keeping the model grounded in actual harvests, not just lab conditions.",
+    "stat1Label": "Fields in our training data",
+    "stat2Label": "Model confidence on matched soil profiles",
+    "stat3Label": "Regions across 3 countries",
+    "step1Title": "We read your field",
+    "step1Body": "Soil moisture, pH, nitrogen, and rainfall forecasts — pulled from sensors or entered manually.",
+    "step2Title": "The model finds the match",
+    "step2Body": "Your readings are compared against thousands of similar fields and seasons to rank crops by fit.",
+    "step3Title": "You get a ranked call",
+    "step3Body": "Not one verdict — a ranked list, with the reasoning shown, so you decide with the full picture."
+  },
+  "footer": {
+    "copyright": "© 2026 AgriVision. Grown with data, rooted in soil.",
+    "tagline": "Built for the next season."
+  },
+  "login": {
+    "welcomeBack": "Welcome back",
+    "loginTitle": "Log in to your field",
+    "signupTitle": "Plant your first season",
+    "loginSub": "Pick up where your last season's data left off.",
+    "signupSub": "Tell us about your land and we'll take it from here.",
+    "emailLabel": "Email or phone",
+    "emailPlaceholder": "you@farmmail.com",
+    "passwordLabel": "Password",
+    "loginSubmit": "Log in",
+    "signupSubmit": "Create account",
+    "newHere": "New here?",
+    "createAccount": "Create an account",
+    "haveAccount": "Already have an account?",
+    "logIn": "Log in"
+  },
+  "languagePicker": {
+    "label": "Language"
+  },
+  "sidebar": {
+    "overview": "Overview",
+    "recommendation": "Recommendation",
+    "fieldHistory": "Field history",
+    "activeField": "Active field",
+    "fieldName": "Field 04 — North Plot",
+    "fieldLocation": "Ludhiana, Punjab",
+    "farmOwner": "Farm owner"
+  },
+  "topbar": {
+    "greeting": "Rabi season · Week 2",
+    "welcomeBack": "Welcome back,",
+    "subtitle": "Here's what your field is telling us right now.",
+    "liveFeed": "Live soil feed connected"
+  },
+  "fieldInput": {
+    "title": "Your field",
+    "step": "STEP 1 / 2",
+    "autoNote": "Soil sensor values are pulled in automatically. Adjust any reading if your manual test differs.",
+    "locationLabel": "Field location",
+    "locationPlaceholder": "City, State, Country",
+    "locationErrorUnsupported": "Geolocation isn't supported in this browser.",
+    "locationErrorDenied": "Couldn't access your location. Check browser permissions.",
+    "moistureLabel": "Soil moisture",
+    "dry": "Dry",
+    "saturated": "Saturated",
+    "phLabel": "Soil pH",
+    "acidic": "Acidic",
+    "alkaline": "Alkaline",
+    "nitrogenLabel": "Nitrogen (N)",
+    "low": "Low",
+    "high": "High",
+    "rainfallLabel": "Rainfall forecast",
+    "rainfallLow": "Low (under 50mm)",
+    "rainfallModerate": "Moderate (50–150mm)",
+    "rainfallHigh": "High (over 150mm)",
+    "runButton": "Run recommendation",
+    "rerunButton": "Re-run recommendation",
+    "loadingButton": "Reading your field…"
+  },
+  "recommendation": {
+    "title": "Ranked recommendation",
+    "step": "STEP 2 / 2",
+    "emptyState": "Set your field values and run the model to see your ranked crop list here.",
+    "matchSuffix": "% match",
+    "soilFit": "Soil fit",
+    "climateFit": "Climate fit",
+    "marketSignal": "Market signal"
+  },
+  "insightStrip": {
+    "confidenceLabel": "Model confidence",
+    "confidenceDelta": "Based on 4,800 similar fields",
+    "topMatchLabel": "Top match",
+    "topMatchEmpty": "Run a recommendation to see results",
+    "yieldLabel": "Est. yield uplift",
+    "yieldDelta": "Vs. last season's crop choice",
+    "syncLabel": "Next sensor sync",
+    "syncDelta": "Soil probe · Field 04"
+  },
+  "history": {
+    "eyebrow": "Field 04 · North Plot",
+    "title": "Field history",
+    "subtitle": "Every season this field has run through AgriVision, and how it turned out.",
+    "seasonsTracked": "Seasons tracked",
+    "accuracy": "Recommendation accuracy",
+    "bestOutcome": "Best outcome",
+    "recommended": "Recommended",
+    "actuallyPlanted": "Actually planted",
+    "matchScoreSuffix": "% match score",
+    "outcomeMatched": "Matched prediction",
+    "outcomeOutperformed": "Outperformed prediction",
+    "outcomeUnderperformed": "Underperformed prediction"
+  },
+  "crops": {
+    "wheat": "Wheat",
+    "mustard": "Mustard",
+    "chickpea": "Chickpea (Gram)",
+    "barley": "Barley",
+    "maize": "Maize",
+    "soybean": "Soybean",
+    "sugarcane": "Sugarcane",
+    "millet": "Millet",
+    "cotton": "Cotton"
+  }
+}

@@ -63,9 +63,35 @@
   border: 1px solid rgba(110, 156, 92, 0.35);
 }
 
-.field-switcher {
+.sidebar-lang-row {
   margin-top: auto;
-  padding-top: 18px;
+  padding: 14px 10px 0;
+  display: flex;
+}
+
+.sidebar-lang-row .lang-picker {
+  width: 100%;
+}
+
+.sidebar-lang-row .lang-picker-trigger {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.sidebar-lang-row .lang-picker-current {
+  max-width: none;
+  flex: 1;
+  text-align: left;
+}
+
+.sidebar-lang-row .lang-picker-menu {
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.field-switcher {
+  padding-top: 14px;
   border-top: 1px solid var(--line-dark, rgba(242, 232, 213, 0.14));
 }
 

@@ -1,0 +1,112 @@
+.lang-picker {
+  position: relative;
+}
+
+.lang-picker-trigger {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(242, 232, 213, 0.06);
+  border: 1px solid rgba(242, 232, 213, 0.16);
+  color: var(--wheat);
+  font-size: 0.84rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.lang-picker-trigger:hover {
+  background: rgba(242, 232, 213, 0.1);
+  border-color: rgba(242, 232, 213, 0.3);
+}
+
+.lang-picker-trigger svg:first-child {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  opacity: 0.75;
+}
+
+.lang-picker-current {
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lang-picker-chev {
+  flex-shrink: 0;
+  opacity: 0.6;
+  transition: transform 0.2s ease;
+}
+
+.lang-picker-trigger[aria-expanded='true'] .lang-picker-chev {
+  transform: rotate(180deg);
+}
+
+.lang-picker-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  list-style: none;
+  background: #221a13;
+  border: 1px solid rgba(242, 232, 213, 0.16);
+  border-radius: 12px;
+  padding: 6px;
+  min-width: 200px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  z-index: 50;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.lang-picker-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  color: var(--wheat);
+  font-size: 0.86rem;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.lang-picker-option:hover {
+  background: rgba(242, 232, 213, 0.08);
+}
+
+.lang-picker-option.active {
+  background: rgba(79, 121, 66, 0.18);
+}
+
+.lang-native {
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.lang-english {
+  color: rgba(242, 232, 213, 0.45);
+  font-size: 0.76rem;
+  flex: 1;
+}
+
+.lang-check {
+  color: var(--crop-light);
+  flex-shrink: 0;
+}
+
+@media (max-width: 860px) {
+  .lang-picker-current {
+    display: none;
+  }
+  .lang-picker-trigger {
+    padding: 8px 10px;
+  }
+}
