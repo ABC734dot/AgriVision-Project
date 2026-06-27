@@ -3,7 +3,15 @@ import './HistorySummary.css'
 export default function HistorySummary({ entries }) {
   const total = entries.length
   const matched = entries.filter((e) => e.outcome !== 'underperformed').length
-  const accuracy = Math.round((matched / total) * 100)
+  const accuracy = total > 0 ? Math.round((matched / total) * 100) : 0
+
+  const bestEntry = entries.reduce((best, e) => {
+    if (e.outcome === 'outperformed' && (!best || (e.matchScore ?? 0) > (best.matchScore ?? 0))) {
+      return e
+    }
+    return best
+  }, null)
+  const bestOutcomeLabel = bestEntry?.season || entries[0]?.season || '—'
 
   return (
     <div className="history-summary">
@@ -17,7 +25,7 @@ export default function HistorySummary({ entries }) {
       </div>
       <div className="summary-card">
         <div className="s-label">Best outcome</div>
-        <div className="s-value amber">Rabi 2025</div>
+        <div className="s-value amber">{bestOutcomeLabel}</div>
       </div>
     </div>
   )

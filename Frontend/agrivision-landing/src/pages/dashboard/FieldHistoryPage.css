@@ -2,3 +2,14 @@
   display: flex;
   flex-direction: column;
 }
+
+.history-empty {
+  background: #fff;
+  border: 1px solid var(--line-soft);
+  border-radius: 14px;
+  padding: 40px 24px;
+  text-align: center;
+  color: rgba(26, 20, 16, 0.5);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}

@@ -1,0 +1,67 @@
+-- AgriVision database schema
+CREATE DATABASE IF NOT EXISTS agrivision
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+USE agrivision;
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  email VARCHAR(190) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  phone VARCHAR(30) DEFAULT NULL,
+  farm_owner_title VARCHAR(120) DEFAULT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS fields (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  field_name VARCHAR(150) NOT NULL,
+  location_label VARCHAR(190) DEFAULT NULL,
+  latitude DECIMAL(9,6) DEFAULT NULL,
+  longitude DECIMAL(9,6) DEFAULT NULL,
+  is_active TINYINT(1) NOT NULL DEFAULT 0,
+  last_moisture DECIMAL(5,2) DEFAULT NULL,
+  last_ph DECIMAL(4,2) DEFAULT NULL,
+  last_nitrogen DECIMAL(6,2) DEFAULT NULL,
+  last_rainfall_label VARCHAR(60) DEFAULT NULL,
+  last_synced_at TIMESTAMP NULL DEFAULT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_fields_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS recommendation_runs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  field_id INT NOT NULL,
+  moisture DECIMAL(5,2) DEFAULT NULL,
+  ph DECIMAL(4,2) DEFAULT NULL,
+  nitrogen DECIMAL(6,2) DEFAULT NULL,
+  rainfall_label VARCHAR(60) DEFAULT NULL,
+  model_confidence DECIMAL(5,2) DEFAULT NULL,
+  result_json JSON NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_runs_field FOREIGN KEY (field_id) REFERENCES fields(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS field_history (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  field_id INT NOT NULL,
+  season_label VARCHAR(60) NOT NULL,
+  date_range VARCHAR(80) DEFAULT NULL,
+  recommended_crop VARCHAR(100) DEFAULT NULL,
+  recommended_icon VARCHAR(10) DEFAULT NULL,
+  match_score DECIMAL(5,2) DEFAULT NULL,
+  planted_crop VARCHAR(100) DEFAULT NULL,
+  outcome ENUM('matched', 'outperformed', 'underperformed') DEFAULT NULL,
+  yield_note VARCHAR(255) DEFAULT NULL,
+  note TEXT DEFAULT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_history_field FOREIGN KEY (field_id) REFERENCES fields(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE INDEX idx_fields_user ON fields(user_id);
+CREATE INDEX idx_runs_field ON recommendation_runs(field_id);
+CREATE INDEX idx_history_field ON field_history(field_id);

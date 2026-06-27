@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import './FieldInputPanel.css'
 
-export default function FieldInputPanel({ onRun, isLoading, hasRun }) {
-  const [moisture, setMoisture] = useState(38)
-  const [ph, setPh] = useState(64)
-  const [nitrogen, setNitrogen] = useState(62)
-  const [rainfall, setRainfall] = useState('Moderate (50–150mm)')
-  const [location, setLocation] = useState('Ludhiana, Punjab, India')
+export default function FieldInputPanel({ onRun, isLoading, hasRun, initialValues }) {
+  const [moisture, setMoisture] = useState(initialValues?.moisture ?? 38)
+  const [ph, setPh] = useState(initialValues?.ph != null ? Math.round(initialValues.ph * 10) : 64)
+  const [nitrogen, setNitrogen] = useState(initialValues?.nitrogen ?? 62)
+  const [rainfall, setRainfall] = useState(initialValues?.rainfallLabel ?? 'Moderate (50–150mm)')
+  const [location, setLocation] = useState(initialValues?.location ?? 'Ludhiana, Punjab, India')
+
   const [locating, setLocating] = useState(false)
   const [locationError, setLocationError] = useState('')
 
@@ -50,6 +51,10 @@ export default function FieldInputPanel({ onRun, isLoading, hasRun }) {
         setLocationError('Couldn\u2019t access your location. Check browser permissions.')
       }
     )
+  }
+
+  const handleRunClick = () => {
+    onRun({ location, moisture, ph, nitrogen, rainfall })
   }
 
   return (
@@ -166,7 +171,7 @@ export default function FieldInputPanel({ onRun, isLoading, hasRun }) {
 
       <button
         className={`run-btn ${isLoading ? 'loading' : ''}`}
-        onClick={onRun}
+        onClick={handleRunClick}
         disabled={isLoading}
       >
         {isLoading ? (

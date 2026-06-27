@@ -1,11 +1,11 @@
 import './InsightStrip.css'
 
-export default function InsightStrip({ hasRun, topCrop }) {
+export default function InsightStrip({ hasRun, topCrop, confidence, yieldUplift }) {
   return (
     <div className="insight-strip">
       <div className="insight-card">
         <div className="i-label">Model confidence</div>
-        <div className="i-value crop">{hasRun ? '94%' : '—'}</div>
+        <div className="i-value crop">{hasRun ? `${confidence}%` : '—'}</div>
         <div className="i-delta">Based on 4,800 similar fields</div>
       </div>
       <div className="insight-card">
@@ -17,7 +17,7 @@ export default function InsightStrip({ hasRun, topCrop }) {
       </div>
       <div className="insight-card">
         <div className="i-label">Est. yield uplift</div>
-        <div className="i-value amber">{hasRun ? '+18%' : '—'}</div>
+        <div className="i-value amber">{hasRun ? `+${yieldUplift}%` : '—'}</div>
         <div className="i-delta">Vs. last season&apos;s crop choice</div>
       </div>
       <div className="insight-card">

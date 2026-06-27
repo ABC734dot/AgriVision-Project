@@ -1,9 +1,19 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import BrandMark from '../../../components/BrandMark.jsx'
+import { useAuth } from '../../../context/AuthContext.jsx'
 import './Sidebar.css'
 
 export default function Sidebar() {
   const { pathname } = useLocation()
+  const navigate = useNavigate()
+  const { user, logout } = useAuth()
+
+  const activeField = user?.fields?.find((f) => f.is_active) || user?.fields?.[0] || null
+
+  const handleLogout = () => {
+    logout()
+    navigate('/')
+  }
 
   return (
     <aside className="sidebar">
@@ -40,8 +50,8 @@ export default function Sidebar() {
         <div className="field-pill">
           <span className="dot" />
           <div className="meta">
-            <div className="name">Field 04 — North Plot</div>
-            <div className="loc">Ludhiana, Punjab</div>
+            <div className="name">{activeField?.field_name || 'No field yet'}</div>
+            <div className="loc">{activeField?.location_label || 'Location not set'}</div>
           </div>
           <svg className="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M8 9l4 4 4-4" />
@@ -55,9 +65,16 @@ export default function Sidebar() {
             </svg>
           </div>
           <div>
-            <div className="pname">Tanish</div>
-            <div className="prole">Farm owner</div>
+            <div className="pname">{user?.name || 'Guest'}</div>
+            <div className="prole">{user?.farmOwnerTitle || 'Farm owner'}</div>
           </div>
+          <button className="logout-btn" onClick={handleLogout} aria-label="Log out" title="Log out">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+              <path d="M16 17l5-5-5-5" />
+              <path d="M21 12H9" />
+            </svg>
+          </button>
         </div>
       </div>
     </aside>

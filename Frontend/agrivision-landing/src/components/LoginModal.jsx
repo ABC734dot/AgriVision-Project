@@ -1,12 +1,19 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext.jsx'
 import './LoginModal.css'
 
 export default function LoginModal({ isOpen, onClose }) {
   const [isSignup, setIsSignup] = useState(false)
-  const navigate = useNavigate()
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
 
-  // Close on Escape key
+  const navigate = useNavigate()
+  const { login, signup } = useAuth()
+
   useEffect(() => {
     if (!isOpen) return
     const onKeyDown = (e) => {
@@ -20,10 +27,31 @@ export default function LoginModal({ isOpen, onClose }) {
     }
   }, [isOpen, onClose])
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    if (!isOpen) {
+      setError('')
+      setSubmitting(false)
+    }
+  }, [isOpen])
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    onClose()
-    navigate('/dashboard')
+    setError('')
+    setSubmitting(true)
+
+    try {
+      if (isSignup) {
+        await signup({ name, email, password })
+      } else {
+        await login(email, password)
+      }
+      onClose()
+      navigate('/dashboard')
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -49,26 +77,60 @@ export default function LoginModal({ isOpen, onClose }) {
         </p>
 
         <form onSubmit={handleSubmit}>
+          {isSignup && (
+            <div className="form-group">
+              <label htmlFor="signupName">Name</label>
+              <input
+                type="text"
+                id="signupName"
+                placeholder="Your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+          )}
+
           <div className="form-group">
-            <label htmlFor="loginPhone">Phone</label>
-            <input type="tel" id="loginPhone" pattern="[0-9]{10}" 
-       maxlength="10" placeholder="94xxxxxxxx" required />
+            <label htmlFor="loginEmail">Email</label>
+            <input
+              type="email"
+              id="loginEmail"
+              placeholder="you@farmmail.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
           </div>
           <div className="form-group">
             <label htmlFor="loginPass">Password</label>
-            <input type="password" id="loginPass" placeholder="••••••••" required />
+            <input
+              type="password"
+              id="loginPass"
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
           </div>
-          <button type="submit" className="login-submit">
-            {isSignup ? 'Create account' : 'Log in'}
+
+          {error && <div className="login-error">{error}</div>}
+
+          <button type="submit" className="login-submit" disabled={submitting}>
+            {submitting
+              ? isSignup ? 'Creating account…' : 'Logging in…'
+              : isSignup ? 'Create account' : 'Log in'}
           </button>
         </form>
 
         <p className="login-switch">
           {isSignup ? 'Already have an account? ' : 'New here? '}
+          
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault()
+              setError('')
               setIsSignup((v) => !v)
             }}
           >

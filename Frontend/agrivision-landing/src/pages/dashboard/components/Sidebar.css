@@ -150,11 +150,44 @@
 .profile-row .pname {
   font-size: 0.86rem;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .profile-row .prole {
   font-size: 0.74rem;
   color: rgba(242, 232, 213, 0.5);
+}
+
+.profile-row > div:not(.profile-avatar) {
+  flex: 1;
+  min-width: 0;
+}
+
+.logout-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  border: none;
+  background: rgba(242, 232, 213, 0.06);
+  color: rgba(242, 232, 213, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s;
+}
+
+.logout-btn:hover {
+  background: rgba(181, 85, 46, 0.25);
+  color: #f2c4ae;
+}
+
+.logout-btn svg {
+  width: 15px;
+  height: 15px;
 }
 
 @media (max-width: 860px) {

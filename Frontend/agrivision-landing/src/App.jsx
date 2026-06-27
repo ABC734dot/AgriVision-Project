@@ -4,6 +4,8 @@ import LandingPage from './pages/landing/LandingPage.jsx'
 import DashboardPage from './pages/dashboard/DashboardPage.jsx'
 import FieldHistoryPage from './pages/dashboard/FieldHistoryPage.jsx'
 import LoginModal from './components/LoginModal.jsx'
+import RequireAuth from './components/RequireAuth.jsx'
+import { AuthProvider } from './context/AuthContext.jsx'
 import './App.css'
 
 export default function App() {
@@ -13,16 +15,30 @@ export default function App() {
   const closeLogin = () => setLoginOpen(false)
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LandingPage onLoginClick={openLogin} />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/dashboard/history" element={<FieldHistoryPage />} />
-      </Routes>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LandingPage onLoginClick={openLogin} />} />
+          <Route
+            path="/dashboard"
+            element={
+              <RequireAuth>
+                <DashboardPage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/dashboard/history"
+            element={
+              <RequireAuth>
+                <FieldHistoryPage />
+              </RequireAuth>
+            }
+          />
+        </Routes>
 
-      {/* Mounted at the router root so it can navigate to /dashboard on submit,
-          regardless of which page it was opened from. */}
-      <LoginModal isOpen={loginOpen} onClose={closeLogin} />
-    </BrowserRouter>
+        <LoginModal isOpen={loginOpen} onClose={closeLogin} />
+      </BrowserRouter>
+    </AuthProvider>
   )
 }

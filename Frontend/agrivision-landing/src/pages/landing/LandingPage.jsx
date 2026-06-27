@@ -16,7 +16,7 @@ export default function LandingPage({ onLoginClick }) {
       <Hero onTurnClick={onLoginClick} onWatchStoriesClick={scrollToStories} />
       <FieldRows />
       <TurnSection onTurnClick={onLoginClick} onLoginClick={onLoginClick} />
-      <TurnSection onTurnClick={onLoginClick} onLoginClick={onLoginClick} />
+      {/* <TurnSection onTurnClick={onLoginClick} onLoginClick={onLoginClick} /> */}
       <AboutSection />
 
       <Footer />
