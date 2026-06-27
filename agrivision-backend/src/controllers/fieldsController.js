@@ -47,8 +47,27 @@ export async function runRecommendation(req, res) {
       `INSERT INTO recommendation_runs
          (field_id, moisture, ph, nitrogen, rainfall_label, model_confidence, result_json)
        VALUES (?, ?, ?, ?, ?, ?, ?)`,
-      [fieldId, moisture ?? null, ph ?? null, nitrogen ?? null, rainfallLabel ?? null,
-       recommendation.modelConfidence, JSON.stringify(recommendation)]
+      [
+        fieldId,
+        moisture ?? null,
+        ph ?? null,
+        nitrogen ?? null,
+        rainfallLabel ?? null,
+        recommendation.modelConfidence,
+        JSON.stringify(recommendation),
+      ]
+    )
+
+    await pool.query(
+      `UPDATE fields
+       SET location_label = COALESCE(?, location_label),
+           last_moisture = ?,
+           last_ph = ?,
+           last_nitrogen = ?,
+           last_rainfall_label = ?,
+           last_synced_at = NOW()
+       WHERE id = ?`,
+      [location || null, moisture ?? null, ph ?? null, nitrogen ?? null, rainfallLabel ?? null, fieldId]
     )
 
     return res.json({ recommendation })
