@@ -1,8 +1,17 @@
-import { outcomeMeta } from '../data/history.js'
+// import { outcomeMeta } from '../data/history.js'
 import './HistoryEntry.css'
 
+// Static display labels/colors for each outcome value the backend can
+// return for a history entry (field_history.outcome ENUM in MySQL).
+const outcomeMeta = {
+  matched: { label: 'Matched prediction', tone: 'neutral' },
+  outperformed: { label: 'Outperformed prediction', tone: 'good' },
+  underperformed: { label: 'Underperformed prediction', tone: 'warn' },
+}
+
 export default function HistoryEntry({ entry, isLast }) {
-  const meta = outcomeMeta[entry.outcome]
+
+  const meta = outcomeMeta[entry.outcome] || { label: 'Outcome pending', tone: 'neutral' }
 
   return (
     <div className="history-entry">
