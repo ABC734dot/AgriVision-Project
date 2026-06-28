@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import './ScanReadout.css'
 
 const CROPS = ['Maize', 'Wheat', 'Soybean', 'Sugarcane', 'Millet', 'Cotton']
@@ -13,6 +14,8 @@ function randomReading() {
 }
 
 export default function ScanReadout() {
+
+  const { t } = useTranslation()
   const [reading, setReading] = useState(randomReading)
 
   useEffect(() => {
@@ -26,12 +29,12 @@ export default function ScanReadout() {
         <svg width="10" height="10" viewBox="0 0 24 24" fill="#E8A33D">
           <circle cx="12" cy="12" r="10" />
         </svg>
-        Soil scan · Field 04
+        {t('scanReadout.title')}
       </span>
-      <div className="scan-row"><span>Moisture</span><span>{reading.moisture}</span></div>
-      <div className="scan-row"><span>Nitrogen (N)</span><span>{reading.nitrogen}</span></div>
-      <div className="scan-row"><span>pH level</span><span>{reading.ph}</span></div>
-      <div className="scan-row"><span>Best match</span><span>{reading.crop}</span></div>
+      <div className="scan-row"><span>{t('scanReadout.moisture')}</span><span>{reading.moisture}</span></div>
+      <div className="scan-row"><span>{t('scanReadout.nitrogen')}</span><span>{reading.nitrogen}</span></div>
+      <div className="scan-row"><span>{t('scanReadout.ph')}</span><span>{reading.ph}</span></div>
+      <div className="scan-row"><span>{t('scanReadout.bestMatch')}</span><span>{reading.crop}</span></div>
     </div>
   )
 }

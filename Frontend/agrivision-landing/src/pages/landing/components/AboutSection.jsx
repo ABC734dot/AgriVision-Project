@@ -1,46 +1,29 @@
+import { useTranslation } from 'react-i18next'
 import './AboutSection.css'
 
-const stats = [
-  { value: '4,800+', label: 'Fields in our training data' },
-  { value: '94%', label: 'Model confidence on matched soil profiles' },
-  { value: '12', label: 'Regions across 3 countries' },
-]
-
-const steps = [
-  {
-    num: '01',
-    title: 'We read your field',
-    body: 'Soil moisture, pH, nitrogen, and rainfall forecasts — pulled from sensors or entered manually.',
-  },
-  {
-    num: '02',
-    title: 'The model finds the match',
-    body: 'Your readings are compared against thousands of similar fields and seasons to rank crops by fit.',
-  },
-  {
-    num: '03',
-    title: 'You get a ranked call',
-    body: 'Not one verdict — a ranked list, with the reasoning shown, so you decide with the full picture.',
-  },
-]
-
 export default function AboutSection() {
+  const { t } = useTranslation()
+
+  const stats = [
+    { value: '1000+', label: t('about.stat1Label') },
+    { value: '85%', label: t('about.stat2Label') },
+    { value: '12', label: t('about.stat3Label') },
+  ]
+
+  const steps = [
+    { num: '01', title: t('about.step1Title'), body: t('about.step1Body') },
+    { num: '02', title: t('about.step2Title'), body: t('about.step2Body') },
+    { num: '03', title: t('about.step3Title'), body: t('about.step3Body') },
+  ]
+
   return (
     <section className="about-section" id="about">
       <div className="about-intro">
-        <span className="section-label">About AgriVision</span>
+        <span className="section-label">{t('about.sectionLabel')}</span>
         <h2>
-          Built because farming decisions deserve <em>better than a guess.</em>
+          {t('about.headingPrefix')} <em>{t('about.headingEm')}</em>
         </h2>
-        <p className="about-mission">
-          Most crop choices are still made on instinct, habit, or whatever
-          worked last year — even as rainfall patterns and soil health keep
-          shifting under them. AgriVision exists to put real field data
-          behind that decision, without asking a farmer to become a data
-          scientist to use it. We started with a few fields in Punjab and
-          built outward, region by region, keeping the model grounded in
-          actual harvests, not just lab conditions.
-        </p>
+        <p className="about-mission">{t('about.mission')}</p>
       </div>
 
       <div className="about-stats">

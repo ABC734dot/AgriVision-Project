@@ -1,29 +1,32 @@
+import { useTranslation } from 'react-i18next'
 import './InsightStrip.css'
 
 export default function InsightStrip({ hasRun, topCrop, confidence, yieldUplift }) {
+  const { t } = useTranslation()
+
   return (
     <div className="insight-strip">
       <div className="insight-card">
-        <div className="i-label">Model confidence</div>
+        <div className="i-label">{t('insightStrip.confidenceLabel')}</div>
         <div className="i-value crop">{hasRun ? `${confidence}%` : '—'}</div>
-        <div className="i-delta">Based on 4,800 similar fields</div>
+        <div className="i-delta">{t('insightStrip.confidenceDelta')}</div>
       </div>
       <div className="insight-card">
-        <div className="i-label">Top match</div>
+        <div className="i-label">{t('insightStrip.topMatchLabel')}</div>
         <div className="i-value">{hasRun ? topCrop.name : '—'}</div>
         <div className="i-delta">
-          {hasRun ? `${topCrop.score}% predicted match score` : 'Run a recommendation to see results'}
+          {hasRun ? `${topCrop.score}${t('recommendation.matchSuffix')}` : t('insightStrip.topMatchEmpty')}
         </div>
       </div>
       <div className="insight-card">
-        <div className="i-label">Est. yield uplift</div>
+        <div className="i-label">{t('insightStrip.yieldLabel')}</div>
         <div className="i-value amber">{hasRun ? `+${yieldUplift}%` : '—'}</div>
-        <div className="i-delta">Vs. last season&apos;s crop choice</div>
+        <div className="i-delta">{t('insightStrip.yieldDelta')}</div>
       </div>
       <div className="insight-card">
-        <div className="i-label">Next sensor sync</div>
+        <div className="i-label">{t('insightStrip.syncLabel')}</div>
         <div className="i-value">14m</div>
-        <div className="i-delta">Soil probe · Field 04</div>
+        <div className="i-delta">{t('insightStrip.syncDelta')}</div>
       </div>
     </div>
   )

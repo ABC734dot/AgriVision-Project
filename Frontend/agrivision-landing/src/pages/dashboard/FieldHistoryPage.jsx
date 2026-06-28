@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import Sidebar from './components/Sidebar.jsx'
 import Topbar from './components/Topbar.jsx'
 import HistorySummary from './components/HistorySummary.jsx'
@@ -8,6 +9,7 @@ import './FieldHistoryPage.css'
 
 export default function FieldHistoryPage() {
   const { user } = useAuth()
+  const { t } = useTranslation()
 
   const activeField = user?.fields?.find((f) => f.is_active) || user?.fields?.[0] || null
   const history = activeField?.history || []
@@ -24,8 +26,8 @@ export default function FieldHistoryPage() {
         <Topbar
           name={user?.name}
           eyebrow={fieldLabel}
-          title="Field history"
-          subtitle="Every season this field has run through AgriVision, and how it turned out."
+          title={t('history.title')}
+          subtitle={t('history.subtitle')}
         />
 
         {history.length === 0 ? (

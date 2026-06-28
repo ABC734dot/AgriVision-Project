@@ -1,8 +1,12 @@
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import StoryCard from './StoryCard.jsx'
 import './Rail.css'
 
 export default function Rail({ fieldNumber, title, stories }) {
+
+  const { t } = useTranslation()
+
   const railRef = useRef(null)
 
   const scrollBy = (amount) => {
@@ -13,7 +17,7 @@ export default function Rail({ fieldNumber, title, stories }) {
     <div className="row-block">
       <div className="row-block-head">
         <h3>
-          <span className="field-num">Row {fieldNumber}</span>
+          <span className="field-num">{t('fieldRows.rowLabel')} {fieldNumber}</span>
           {title}
         </h3>
         <div className="row-nav">

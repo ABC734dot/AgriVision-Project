@@ -1,7 +1,11 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import './FieldInputPanel.css'
 
 export default function FieldInputPanel({ onRun, isLoading, hasRun, initialValues }) {
+
+  const { t } = useTranslation()
+
   const [moisture, setMoisture] = useState(initialValues?.moisture ?? 38)
   const [ph, setPh] = useState(initialValues?.ph != null ? Math.round(initialValues.ph * 10) : 64)
   const [nitrogen, setNitrogen] = useState(initialValues?.nitrogen ?? 62)
@@ -13,7 +17,7 @@ export default function FieldInputPanel({ onRun, isLoading, hasRun, initialValue
 
   const handleUseCurrentLocation = () => {
     if (!navigator.geolocation) {
-      setLocationError('Geolocation isn\u2019t supported in this browser.')
+      setLocationError(t('fieldInput.locationErrorUnsupported'))
       return
     }
 
@@ -48,7 +52,7 @@ export default function FieldInputPanel({ onRun, isLoading, hasRun, initialValue
       },
       () => {
         setLocating(false)
-        setLocationError('Couldn\u2019t access your location. Check browser permissions.')
+        setLocationError(t('fieldInput.locationErrorDenied'))
       }
     )
   }
@@ -60,8 +64,8 @@ export default function FieldInputPanel({ onRun, isLoading, hasRun, initialValue
   return (
     <div className="panel">
       <div className="panel-head">
-        <h2>Your field</h2>
-        <span className="step-tag">STEP 1 / 2</span>
+        <h2>{t('fieldInput.title')}</h2>
+        <span className="step-tag">{t('fieldInput.step')}</span>
       </div>
 
       <div className="auto-note">
@@ -69,19 +73,18 @@ export default function FieldInputPanel({ onRun, isLoading, hasRun, initialValue
           <circle cx="12" cy="12" r="9" />
           <path d="M12 8v5l3 2" />
         </svg>
-        Soil sensor values are pulled in automatically. Adjust any reading if
-        your manual test differs.
+        {t('fieldInput.autoNote')}
       </div>
 
       <div className="field-row">
-        <label>Field location</label>
+        <label>{t('fieldInput.locationLabel')}</label>
         <div className="location-input-wrap">
           <input
             type="text"
             className="text-input location-input"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            placeholder="City, State, Country"
+            placeholder={t('fieldInput.locationPlaceholder')}
           />
           <button
             type="button"
@@ -108,7 +111,7 @@ export default function FieldInputPanel({ onRun, isLoading, hasRun, initialValue
 
       <div className="field-row">
         <label>
-          Soil moisture <span className="unit">%</span>
+          {t('fieldInput.moistureLabel')} <span className="unit">%</span>
         </label>
         <input
           type="range"
@@ -118,15 +121,15 @@ export default function FieldInputPanel({ onRun, isLoading, hasRun, initialValue
           onChange={(e) => setMoisture(Number(e.target.value))}
         />
         <div className="range-readout">
-          <span>Dry</span>
+          <span>{t('fieldInput.dry')}</span>
           <span className="live">{moisture}%</span>
-          <span>Saturated</span>
+          <span>{t('fieldInput.saturated')}</span>
         </div>
       </div>
 
       <div className="field-row">
         <label>
-          Soil pH <span className="unit">0–14</span>
+          {t('fieldInput.phLabel')} <span className="unit">0–14</span>
         </label>
         <input
           type="range"
@@ -136,15 +139,15 @@ export default function FieldInputPanel({ onRun, isLoading, hasRun, initialValue
           onChange={(e) => setPh(Number(e.target.value))}
         />
         <div className="range-readout">
-          <span>Acidic</span>
+          <span>{t('fieldInput.acidic')}</span>
           <span className="live">{(ph / 10).toFixed(1)}</span>
-          <span>Alkaline</span>
+          <span>{t('fieldInput.alkaline')}</span>
         </div>
       </div>
 
       <div className="field-row">
         <label>
-          Nitrogen (N) <span className="unit">ppm</span>
+          {t('fieldInput.nitrogenLabel')} <span className="unit">ppm</span>
         </label>
         <input
           type="range"
@@ -154,18 +157,18 @@ export default function FieldInputPanel({ onRun, isLoading, hasRun, initialValue
           onChange={(e) => setNitrogen(Number(e.target.value))}
         />
         <div className="range-readout">
-          <span>Low</span>
+          <span>{t('fieldInput.low')}</span>
           <span className="live">{nitrogen} ppm</span>
-          <span>High</span>
+          <span>{t('fieldInput.high')}</span>
         </div>
       </div>
 
       <div className="field-row">
-        <label>Rainfall forecast <span className="unit">mm, next 30d</span></label>
+        <label>{t('fieldInput.rainfallLabel')} <span className="unit">mm, next 30d</span></label>
         <select value={rainfall} onChange={(e) => setRainfall(e.target.value)}>
-          <option>Low (under 50mm)</option>
-          <option>Moderate (50–150mm)</option>
-          <option>High (over 150mm)</option>
+          <option>{t('fieldInput.rainfallLow')}</option>
+          <option>{t('fieldInput.rainfallModerate')}</option>
+          <option>{t('fieldInput.rainfallHigh')}</option>
         </select>
       </div>
 
@@ -179,14 +182,14 @@ export default function FieldInputPanel({ onRun, isLoading, hasRun, initialValue
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
               <path d="M21 12a9 9 0 11-9-9" />
             </svg>
-            Reading your field…
+            {t('fieldInput.loadingButton')}
           </>
         ) : (
           <>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
               <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" />
             </svg>
-            {hasRun ? 'Re-run recommendation' : 'Run recommendation'}
+            {hasRun ? t('fieldInput.rerunButton') : t('fieldInput.runButton')}
           </>
         )}
       </button>

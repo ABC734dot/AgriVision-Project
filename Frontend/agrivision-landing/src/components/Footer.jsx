@@ -1,10 +1,14 @@
+import { useTranslation } from 'react-i18next'
 import './Footer.css'
 
 export default function Footer() {
+
+  const { t } = useTranslation()
+  
   return (
     <footer>
-      <span>© 2026 AgriVision. Grown with data, rooted in soil.</span>
-      <span>Built for the next season.</span>
+      <span> {t('footer.copyright')}</span>
+      <span>{t('footer.tagline')}</span>
     </footer>
   )
 }

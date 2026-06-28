@@ -1,7 +1,12 @@
+import { useTranslation } from 'react-i18next'
 import ScanReadout from './ScanReadout.jsx'
 import './Hero.css'
 
 export default function Hero({ onTurnClick, onWatchStoriesClick }) {
+
+  const { t } = useTranslation()
+
+
   return (
     <section className="hero" id="hero">
       <div className="hero-bg">
@@ -21,20 +26,16 @@ export default function Hero({ onTurnClick, onWatchStoriesClick }) {
 
       <div className="hero-content">
         <span className="hero-eyebrow">
-          <span className="dot" /> Live field intelligence
+          <span className="dot" /> {t('hero.eyebrow')}
         </span>
         <h1>
-          Know what to plant <em>before</em> the season tells you.
+          {t('hero.headlinePrefix')} <em>{t('hero.headlineEm')}</em> {t('hero.headlineSuffix')}
         </h1>
-        <p className="lede">
-          AgriVision reads your soil, climate, and season in real time — then
-          recommends the crop most likely to thrive on your land, backed by
-          data from thousands of farms like yours.
-        </p>
+        <p className="lede">{t('hero.lede')}</p>
 
         <div className="cta-row">
           <button className="cta-primary" onClick={onTurnClick}>
-            Now it&apos;s your turn
+            {t('hero.ctaPrimary')}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M13 5l7 7-7 7" />
             </svg>
@@ -45,7 +46,7 @@ export default function Hero({ onTurnClick, onWatchStoriesClick }) {
                 <path d="M8 5v14l11-7z" />
               </svg>
             </span>
-            Watch farmer stories
+            {t('hero.ctaSecondary')}
           </div>
         </div>
       </div>
@@ -53,7 +54,7 @@ export default function Hero({ onTurnClick, onWatchStoriesClick }) {
       <ScanReadout />
 
       <div className="scroll-cue">
-        <span className="line" /> Scroll to explore
+        <span className="line" /> {t('hero.scrollCue')}
       </div>
     </section>
   )

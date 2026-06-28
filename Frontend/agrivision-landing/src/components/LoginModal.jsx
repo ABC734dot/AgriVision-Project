@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '../context/AuthContext.jsx'
 import './LoginModal.css'
 
 export default function LoginModal({ isOpen, onClose }) {
+
+  const { t } = useTranslation()
   const [isSignup, setIsSignup] = useState(false)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -13,6 +16,7 @@ export default function LoginModal({ isOpen, onClose }) {
 
   const navigate = useNavigate()
   const { login, signup } = useAuth()
+
 
   useEffect(() => {
     if (!isOpen) return
@@ -68,13 +72,9 @@ export default function LoginModal({ isOpen, onClose }) {
           </svg>
         </button>
 
-        <span className="login-eyebrow">Welcome back</span>
-        <h2>{isSignup ? 'Plant your first season' : 'Log in to your field'}</h2>
-        <p className="sub">
-          {isSignup
-            ? 'Tell us about your land and we\u2019ll take it from here.'
-            : 'Pick up where your last season\u2019s data left off.'}
-        </p>
+        <span className="login-eyebrow">{t('login.welcomeBack')}</span>
+        <h2>{isSignup ? t('login.signupTitle') : t('login.loginTitle')}</h2>
+        <p className="sub">{isSignup ? t('login.signupSub') : t('login.loginSub')}</p>
 
         <form onSubmit={handleSubmit}>
           {isSignup && (
@@ -92,18 +92,18 @@ export default function LoginModal({ isOpen, onClose }) {
           )}
 
           <div className="form-group">
-            <label htmlFor="loginEmail">Email</label>
+            <label htmlFor="loginEmail">{t('login.emailLabel')}</label>
             <input
               type="email"
               id="loginEmail"
-              placeholder="you@farmmail.com"
+              placeholder={t('login.emailPlaceholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
           <div className="form-group">
-            <label htmlFor="loginPass">Password</label>
+            <label htmlFor="loginPass">{t('login.passwordLabel')}</label>
             <input
               type="password"
               id="loginPass"
@@ -119,12 +119,12 @@ export default function LoginModal({ isOpen, onClose }) {
           <button type="submit" className="login-submit" disabled={submitting}>
             {submitting
               ? isSignup ? 'Creating account…' : 'Logging in…'
-              : isSignup ? 'Create account' : 'Log in'}
+              : isSignup ? t('login.signupSubmit') : t('login.loginSubmit')}
           </button>
         </form>
 
         <p className="login-switch">
-          {isSignup ? 'Already have an account? ' : 'New here? '}
+          {isSignup ? `${t('login.haveAccount')} ` : `${t('login.newHere')} `}
           
           <a
             href="#"
@@ -134,7 +134,7 @@ export default function LoginModal({ isOpen, onClose }) {
               setIsSignup((v) => !v)
             }}
           >
-            {isSignup ? 'Log in' : 'Create an account'}
+            {isSignup ? t('login.logIn') : t('login.createAccount')}
           </a>
         </p>
       </div>

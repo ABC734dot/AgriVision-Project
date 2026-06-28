@@ -1,7 +1,10 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import './RankItem.css'
 
 export default function RankItem({ crop, index, animate }) {
+  const { t } = useTranslation()
+
   const [expanded, setExpanded] = useState(false)
   const isTop = index === 0
 
@@ -21,7 +24,7 @@ export default function RankItem({ crop, index, animate }) {
               style={{ width: animate ? `${crop.score}%` : '0%' }}
             />
           </div>
-          <div className="rank-bar-label">{crop.score}% match</div>
+          <div className="rank-bar-label">{crop.score}{t('recommendation.matchSuffix')}</div>
         </div>
         <div className="chev-toggle">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -33,15 +36,15 @@ export default function RankItem({ crop, index, animate }) {
       <div className="rank-detail">
         <div className="rank-detail-inner">
           <div className="reason-card">
-            <div className="r-label">Soil fit</div>
+            <div className="r-label">{t('recommendation.soilFit')}</div>
             <div className="r-value good">{crop.soil}</div>
           </div>
           <div className="reason-card">
-            <div className="r-label">Climate fit</div>
+            <div className="r-label">{t('recommendation.climateFit')}</div>
             <div className="r-value good">{crop.climate}</div>
           </div>
           <div className="reason-card">
-            <div className="r-label">Market signal</div>
+            <div className="r-label">{t('recommendation.marketSignal')}</div>
             <div className="r-value">{crop.market}</div>
           </div>
         </div>

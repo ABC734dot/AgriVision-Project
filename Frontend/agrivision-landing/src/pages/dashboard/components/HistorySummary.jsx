@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next'
 import './HistorySummary.css'
 
 export default function HistorySummary({ entries }) {
+  const { t } = useTranslation()
+
   const total = entries.length
   const matched = entries.filter((e) => e.outcome !== 'underperformed').length
   const accuracy = total > 0 ? Math.round((matched / total) * 100) : 0
@@ -16,15 +19,15 @@ export default function HistorySummary({ entries }) {
   return (
     <div className="history-summary">
       <div className="summary-card">
-        <div className="s-label">Seasons tracked</div>
+        <div className="s-label">{t('history.seasonsTracked')}</div>
         <div className="s-value">{total}</div>
       </div>
       <div className="summary-card">
-        <div className="s-label">Recommendation accuracy</div>
+        <div className="s-label">{t('history.accuracy')}</div>
         <div className="s-value crop">{accuracy}%</div>
       </div>
       <div className="summary-card">
-        <div className="s-label">Best outcome</div>
+        <div className="s-label">{t('history.bestOutcome')}</div>
         <div className="s-value amber">{bestOutcomeLabel}</div>
       </div>
     </div>
