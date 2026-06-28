@@ -114,7 +114,7 @@ export async function listHistory(req, res) {
   const [rows] = await pool.query(
     `SELECT id, season_label AS season, date_range AS dateRange,
             recommended_crop AS recommended, recommended_icon AS recommendedIcon,
-            match_score AS matchScore, planted_crop AS planted, outcome,
+            CAST(match_score AS DOUBLE) AS matchScore, planted_crop AS planted, outcome,
             yield_note AS yieldNote, note
      FROM field_history WHERE field_id = ? ORDER BY id DESC`,
     [fieldId]

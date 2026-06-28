@@ -22,12 +22,13 @@ export default function TurnSection({ onTurnClick, onLoginClick }) {
         <p className="turn-footnote">
           {t('turnSection.footnote')}{' '}
           
+          <a
             href="#"
             onClick={(e) => {
               e.preventDefault()
               onLoginClick()
             }}
-          <a>
+          >
             {t('turnSection.footnoteLink')}
           </a>
         </p>

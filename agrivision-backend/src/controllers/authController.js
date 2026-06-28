@@ -26,8 +26,10 @@ async function buildUserPayload(userId) {
   const fields = []
   for (const field of fieldRows) {
     const [historyRows] = await pool.query(
-      `SELECT id, season_label, date_range, recommended_crop, recommended_icon,
-              match_score, planted_crop, outcome, yield_note, note
+      `SELECT id, season_label AS season, date_range AS dateRange,
+              recommended_crop AS recommended, recommended_icon AS recommendedIcon,
+              CAST(match_score AS DOUBLE) AS matchScore, planted_crop AS planted, outcome,
+              yield_note AS yieldNote, note
        FROM field_history WHERE field_id = ? ORDER BY id DESC`,
       [field.id]
     )
