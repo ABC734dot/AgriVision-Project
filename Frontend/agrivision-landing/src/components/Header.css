@@ -113,3 +113,45 @@ header.scrolled {
     display: block;
   }
 }
+
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(20, 16, 12, 0.97);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--line);
+  padding: 12px 22px 18px;
+  animation: mobileMenuIn 0.2s ease;
+}
+
+@keyframes mobileMenuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav-links li a {
+  display: block;
+  padding: 14px 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--wheat);
+  border-bottom: 1px solid var(--line);
+}
+
+.mobile-nav-links li:last-child a {
+  border-bottom: none;
+}
